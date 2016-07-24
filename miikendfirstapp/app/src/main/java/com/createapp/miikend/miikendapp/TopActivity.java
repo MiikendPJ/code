@@ -13,7 +13,7 @@ public class TopActivity extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top);
 
-        //スタートボタンにOnClickListenerを付与
+        //スタートボタンにタップイベント取得を付与
         Button start = (Button)findViewById(R.id.start);
         start.setOnClickListener(this);
     }

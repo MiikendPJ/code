@@ -16,8 +16,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".TopActivity" />
-        <activity android:name=".PlayActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"></activity>
+        <activity
+            android:name=".PlayActivity"
+            android:theme="@style/AppThemeNa" />
+        <activity android:name=".ResultActivity"></activity>
     </application>
 
 </manifest>

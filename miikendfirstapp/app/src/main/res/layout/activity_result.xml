@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:weightSum="1">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/resulttitle"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/result_title" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.70" />
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.18"
+        android:weightSum="1">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/replay"
+            android:layout_weight="1"
+            android:src="@android:drawable/sym_def_app_icon"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/twitter"
+            android:layout_toStartOf="@+id/twitter"
+            android:layout_marginRight="40dp"
+            android:layout_marginEnd="40dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/twitter"
+            android:layout_weight="1"
+            android:src="@android:drawable/sym_def_app_icon"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/facebook"
+            android:layout_weight="1"
+            android:src="@android:drawable/sym_def_app_icon"
+            android:layout_marginLeft="40dp"
+            android:layout_alignTop="@+id/twitter"
+            android:layout_toRightOf="@+id/twitter"
+            android:layout_toEndOf="@+id/twitter"
+            android:layout_marginStart="40dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>
