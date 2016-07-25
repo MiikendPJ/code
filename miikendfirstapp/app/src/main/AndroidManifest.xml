@@ -17,8 +17,7 @@
         </activity>
         <activity android:name=".TopActivity" />
         <activity
-            android:name=".PlayActivity"
-            android:theme="@style/AppThemeNa" />
+            android:name=".PlayActivity" />
         <activity android:name=".ResultActivity"></activity>
     </application>
 

@@ -17,7 +17,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buck"
+            android:id="@+id/back"
             android:src="@android:drawable/ic_menu_revert" />
 
         <ImageButton
@@ -32,6 +32,39 @@
             android:id="@+id/stop"
             android:src="@android:drawable/ic_media_pause" />
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/time"
+            android:layout_weight="1" />
+
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/split01"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/split01" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="score："
+            android:id="@+id/score"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
 
 </LinearLayout>

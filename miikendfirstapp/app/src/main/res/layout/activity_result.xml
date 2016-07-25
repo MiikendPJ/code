@@ -18,14 +18,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView"
+        android:text="score："
+        android:id="@+id/resultscore"
         android:layout_gravity="center_horizontal" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
+        android:id="@+id/resultimage"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.70" />
 
