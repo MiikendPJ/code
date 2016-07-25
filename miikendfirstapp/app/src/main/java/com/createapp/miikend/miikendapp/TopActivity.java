@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class TopActivity extends Activity {
 
@@ -19,7 +18,6 @@ public class TopActivity extends Activity {
 
         //スタートボタンを取得
         Button start = (Button)findViewById(R.id.start);
-
 
         //Listener登録
         start.setOnClickListener(new View.OnClickListener() {
@@ -40,8 +38,8 @@ public class TopActivity extends Activity {
             switch (event.getKeyCode()) {
                 case KeyEvent.KEYCODE_BACK:
 
-                    // ダイアログ表示
-                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(TopActivity.this);
+                    // ダイアログの設定
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
                     alertDialog.setTitle("確認");
                     alertDialog.setMessage("アプリを終了しますか？");
                     alertDialog.setPositiveButton("終了する", new DialogInterface.OnClickListener() {
@@ -60,6 +58,8 @@ public class TopActivity extends Activity {
 
                         }
                     });
+
+                    //ダイアログの作成と表示
                     alertDialog.create().show();
 
                  // 親クラスのdispatchKeyEvent()を呼び出さないためにtrueを返す

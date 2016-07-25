@@ -38,9 +38,33 @@ public class ResultActivity extends Activity implements View.OnClickListener{
 
             //replayボタン押下時
             case R.id.replay:
-                //Play画面に遷移
-                Intent intent = new Intent(getApplicationContext(), PlayActivity.class);
-                startActivity(intent);
+
+                // ダイアログ表示
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+                alertDialog.setTitle("確認");
+                alertDialog.setMessage("スコアを破棄して再度プレイしますか？");
+                alertDialog.setPositiveButton("再プレイ", new DialogInterface.OnClickListener() {
+
+                    //Activityを終了してTop画面に戻る
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Play画面に遷移
+                        Intent intent = new Intent(getApplicationContext(), PlayActivity.class);
+                        startActivity(intent);
+
+                        ResultActivity.this.finish();
+                    }
+                });
+                alertDialog.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
+
+                    //キャンセルをクリックでダイアログ終了（何も書いてないけど大丈夫かな・・・）
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                alertDialog.create().show();
+
                 break;
 
             //twitterボタン押下時
@@ -68,7 +92,7 @@ public class ResultActivity extends Activity implements View.OnClickListener{
                 case KeyEvent.KEYCODE_BACK:
 
                     // ダイアログ表示
-                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(ResultActivity.this);
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
                     alertDialog.setTitle("確認");
                     alertDialog.setMessage("スコアを破棄してTOP画面に戻ります");
                     alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
