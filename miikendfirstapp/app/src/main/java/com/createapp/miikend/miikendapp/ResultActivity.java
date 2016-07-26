@@ -9,7 +9,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class ResultActivity extends Activity implements View.OnClickListener{
+import com.createapp.miikend.miikendapp.base.AppBaseActivity;
+
+public class ResultActivity extends AppBaseActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,32 +40,15 @@ public class ResultActivity extends Activity implements View.OnClickListener{
 
             //replayボタン押下時
             case R.id.replay:
-
-                // ダイアログ表示
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-                alertDialog.setTitle("確認");
-                alertDialog.setMessage("スコアを破棄して再度プレイしますか？");
-                alertDialog.setPositiveButton("再プレイ", new DialogInterface.OnClickListener() {
-
-                    //Activityを終了してTop画面に戻る
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Play画面に遷移
-                        Intent intent = new Intent(getApplicationContext(), PlayActivity.class);
-                        startActivity(intent);
-
-                        ResultActivity.this.finish();
-                    }
-                });
-                alertDialog.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
+                DialogInterface.OnClickListener replayDialogListener = new DialogInterface.OnClickListener() {
 
                     //キャンセルをクリックでダイアログ終了（何も書いてないけど大丈夫かな・・・）
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                     }
-                });
-                alertDialog.create().show();
+                };
+                createAlertDialog("確認", "スコアを破棄して再度プレイしますか？", "再プレイ", "キャンセル", replayDialogListener).show();
 
                 break;
 
@@ -84,42 +69,4 @@ public class ResultActivity extends Activity implements View.OnClickListener{
         }
     }
 
-    //KEYCODE_BACKを無効化
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        if (event.getAction()==KeyEvent.ACTION_DOWN) {
-            switch (event.getKeyCode()) {
-                case KeyEvent.KEYCODE_BACK:
-
-                    // ダイアログ表示
-                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-                    alertDialog.setTitle("確認");
-                    alertDialog.setMessage("スコアを破棄してTOP画面に戻ります");
-                    alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-
-                        //終了するをクリックでActivityを終了してTop画面に戻る
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(getApplicationContext(), TopActivity.class);
-                            startActivity(intent);
-
-                            ResultActivity.this.finish();
-                        }
-                    });
-                    alertDialog.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-
-                        //キャンセルをクリックでダイアログ終了（何も書いてないけど大丈夫かな・・・）
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-                    alertDialog.create().show();
-
-                    // 親クラスのdispatchKeyEvent()を呼び出さないためにtrueを返す
-                    return true;
-            }
-        }
-        return super.dispatchKeyEvent(event);
-    }
 }

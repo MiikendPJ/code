@@ -9,7 +9,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class PlayActivity extends Activity {
+import com.createapp.miikend.miikendapp.base.AppBaseActivity;
+
+public class PlayActivity extends AppBaseActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,98 +21,32 @@ public class PlayActivity extends Activity {
         //戻るボタン取得とListener登録
         ImageButton back = (ImageButton) findViewById(R.id.back);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            //クリックされた場合の処理
-            public void onClick(View view) {
-
-                // ダイアログの設定
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(PlayActivity.this);
-                alertDialog.setTitle("確認");
-                alertDialog.setMessage("ゲームを終了してTOP画面に戻りますか？");
-                alertDialog.setPositiveButton("戻る", new DialogInterface.OnClickListener() {
-
-                    //終了するをクリックでActivity終了。Top画面に戻る
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        PlayActivity.this.finish();
-                    }
-                });
-                alertDialog.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-
-                    //キャンセルをクリックでダイアログ終了（何も書いてないけど大丈夫かな・・・）
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-
-                //ダイアログの作成と表示
-                alertDialog.create().show();
-
-            }
-        });
-
-
+        back.setOnClickListener(this);
 
         //resetボタン取得
-        ImageButton reset = (ImageButton)findViewById(R.id.reset);
-
-
-
-
+        //TODO:View自体のパラメータを変更する事が無いなら、キャストして参照せずにこれでもOK
+        findViewById(R.id.reset).setOnClickListener(this);
 
         //stopボタン取得とListener登録。stubとしてResult画面へ遷移させるボタンにしてます
         ImageButton stop = (ImageButton)findViewById(R.id.stop);
+        stop.setOnClickListener(this);
+    }
 
-        stop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            //クリックされた場合の処理
-            public void onClick(View view) {
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.back:
+                createAlertDialog("確認", "ゲームを終了してTOP画面に戻りますか？", "戻る", "キャンセル", commonActivityFinishDialogListener()).show();
+                break;
+            case R.id.stop:
                 //Result画面へ遷移
                 Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
                 startActivity(intent);
 
                 PlayActivity.this.finish();
-            }
-        });
-    }
-
-    //KEYCODE_BACKを無効化
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        if (event.getAction()==KeyEvent.ACTION_DOWN) {
-            switch (event.getKeyCode()) {
-                case KeyEvent.KEYCODE_BACK:
-
-                    // ダイアログの設定
-                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-                    alertDialog.setTitle("確認");
-                    alertDialog.setMessage("ゲームを終了してTOP画面に戻りますか？");
-                    alertDialog.setPositiveButton("戻る", new DialogInterface.OnClickListener() {
-
-                        //終了するをクリックでActivity終了。Top画面に戻る
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            PlayActivity.this.finish();
-                        }
-                    });
-                    alertDialog.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-
-                        //キャンセルをクリックでダイアログ終了（何も書いてないけど大丈夫かな・・・）
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-
-                    //ダイアログの作成と表示
-                    alertDialog.create().show();
-
-                    // 親クラスのdispatchKeyEvent()を呼び出さないためにtrueを返す
-                    return true;
-            }
+                break;
+            case R.id.reset:
+                break;
         }
-        return super.dispatchKeyEvent(event);
     }
 }
