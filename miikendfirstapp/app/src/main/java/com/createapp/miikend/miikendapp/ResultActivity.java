@@ -84,42 +84,33 @@ public class ResultActivity extends Activity implements View.OnClickListener{
         }
     }
 
-    //KEYCODE_BACKを無効化
     @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        if (event.getAction()==KeyEvent.ACTION_DOWN) {
-            switch (event.getKeyCode()) {
-                case KeyEvent.KEYCODE_BACK:
+    public void onBackPressed() {
+        //ここにやりたい事を書く
+        // ダイアログの設定
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("確認");
+        alertDialog.setMessage("スコアを破棄してTOP画面に戻ります");
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
-                    // ダイアログ表示
-                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-                    alertDialog.setTitle("確認");
-                    alertDialog.setMessage("スコアを破棄してTOP画面に戻ります");
-                    alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-
-                        //終了するをクリックでActivityを終了してTop画面に戻る
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(getApplicationContext(), TopActivity.class);
-                            startActivity(intent);
-
-                            ResultActivity.this.finish();
-                        }
-                    });
-                    alertDialog.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-
-                        //キャンセルをクリックでダイアログ終了（何も書いてないけど大丈夫かな・・・）
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-                    alertDialog.create().show();
-
-                    // 親クラスのdispatchKeyEvent()を呼び出さないためにtrueを返す
-                    return true;
+            //終了するをクリックでActivity終了
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(getApplicationContext(), TopActivity.class);
+                startActivity(intent);
+                ResultActivity.this.finish();
             }
-        }
-        return super.dispatchKeyEvent(event);
+        });
+        alertDialog.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
+
+            //キャンセルをクリックでダイアログ終了（何も書いてないけど大丈夫かな・・・）
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        //ダイアログの作成と表示
+        alertDialog.create().show();
     }
 }

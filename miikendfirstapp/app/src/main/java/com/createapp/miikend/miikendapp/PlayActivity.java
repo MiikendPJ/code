@@ -33,6 +33,8 @@ public class PlayActivity extends Activity {
                     //終了するをクリックでActivity終了。Top画面に戻る
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getApplicationContext(), TopActivity.class);
+                        startActivity(intent);
                         PlayActivity.this.finish();
                     }
                 });
@@ -76,13 +78,9 @@ public class PlayActivity extends Activity {
         });
     }
 
-    //KEYCODE_BACKを無効化
     @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        if (event.getAction()==KeyEvent.ACTION_DOWN) {
-            switch (event.getKeyCode()) {
-                case KeyEvent.KEYCODE_BACK:
-
+    public void onBackPressed() {
+        //ここにやりたい事を書く
                     // ダイアログの設定
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
                     alertDialog.setTitle("確認");
@@ -92,6 +90,8 @@ public class PlayActivity extends Activity {
                         //終了するをクリックでActivity終了。Top画面に戻る
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getApplicationContext(), TopActivity.class);
+                            startActivity(intent);
                             PlayActivity.this.finish();
                         }
                     });
@@ -107,10 +107,6 @@ public class PlayActivity extends Activity {
                     //ダイアログの作成と表示
                     alertDialog.create().show();
 
-                    // 親クラスのdispatchKeyEvent()を呼び出さないためにtrueを返す
-                    return true;
-            }
-        }
-        return super.dispatchKeyEvent(event);
+
     }
 }

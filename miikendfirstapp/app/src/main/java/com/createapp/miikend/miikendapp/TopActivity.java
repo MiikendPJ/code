@@ -27,11 +27,40 @@ public class TopActivity extends Activity {
                 //Play画面起動
                 Intent intent = new Intent(getApplicationContext(), PlayActivity.class);
                 startActivity(intent);
+                TopActivity.this.finish();
             }
         });
     }
 
-    //KEYCODE_BACKを無効化
+    //戻るキーを押した時の動作
+    @Override
+    public void onBackPressed() {
+        //ここにやりたい事を書く
+        // ダイアログの設定
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("確認");
+        alertDialog.setMessage("アプリを終了しますか？");
+        alertDialog.setPositiveButton("終了する", new DialogInterface.OnClickListener() {
+
+            //終了するをクリックでActivity終了
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                TopActivity.this.finish();
+            }
+        });
+        alertDialog.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
+
+            //キャンセルをクリックでダイアログ終了（何も書いてないけど大丈夫かな・・・）
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        //ダイアログの作成と表示
+        alertDialog.create().show();
+    }
+    /*//KEYCODE_BACKを無効化
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         if (event.getAction()==KeyEvent.ACTION_DOWN) {
@@ -67,5 +96,6 @@ public class TopActivity extends Activity {
             }
         }
         return super.dispatchKeyEvent(event);
-    }
+        **/
+
 }
