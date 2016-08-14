@@ -59,11 +59,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="score："
-            android:id="@+id/score"
+            android:text="0"
+            android:id="@+id/count"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="score:"
+            android:id="@+id/score"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/count"
+            android:layout_toStartOf="@+id/count" />
 
     </RelativeLayout>
 

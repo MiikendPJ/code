@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -46,6 +45,7 @@ public class TopActivity extends Activity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 TopActivity.this.finish();
+                TopActivity.this.moveTaskToBack(true);
             }
         });
         alertDialog.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
