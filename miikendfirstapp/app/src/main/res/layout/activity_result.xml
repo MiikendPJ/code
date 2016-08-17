@@ -20,7 +20,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="score："
         android:id="@+id/resultscore"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentTop="false"
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="match_parent"

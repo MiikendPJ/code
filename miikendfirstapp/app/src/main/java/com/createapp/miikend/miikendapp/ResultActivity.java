@@ -7,13 +7,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class ResultActivity extends Activity implements View.OnClickListener{
+
+    //スコアのための変数宣言
+    int scoreResult = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+
+        //スコアの受け取り
+        Intent intent = getIntent();
+        scoreResult = intent.getIntExtra("playScore",0);
+
+        //スコアの表示
+        TextView resultScore = (TextView)findViewById(R.id.resultscore);
+        resultScore.setText(String.valueOf("score: "+scoreResult));
+
 
         //replayボタンを取得とListener登録
         ImageButton replay = (ImageButton) findViewById (R.id.replay);

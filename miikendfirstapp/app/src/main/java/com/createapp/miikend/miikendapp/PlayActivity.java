@@ -8,17 +8,18 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class PlayActivity extends Activity implements View.OnClickListener{
 
     //スコアカウント用の変数宣言
-    int countMessage = 0;
+    int scoreCount = 0;
 
-    //スコアカウント毎にテキスト表示するメソッドを作成
+    //スコアカウント毎にテキスト表示を更新するメソッドを作成
     private void updateCountView() {
         TextView count = (TextView) findViewById(R.id.count);
-        count.setText(String.valueOf(countMessage));
+        count.setText(String.valueOf(scoreCount));
     }
 
 
@@ -33,18 +34,18 @@ public class PlayActivity extends Activity implements View.OnClickListener{
         //resetボタン取得
         findViewById(R.id.reset).setOnClickListener(this);
 
-        //stopボタン取得とListener登録。stubとしてResult画面へ遷移させるボタンにしてます
+        //stopボタン取得とListener登録。
         findViewById(R.id.stop).setOnClickListener(this);
+
+
     }
 
     //クリックイベントの振り分け
     public void onClick(View view) {
 
-        //switch文で複数ボタンのクリックを制御
         switch (view.getId()) {
 
             case R.id.back :
-
                 // ダイアログの設定
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(PlayActivity.this);
                 alertDialog.setTitle("確認");
@@ -67,21 +68,24 @@ public class PlayActivity extends Activity implements View.OnClickListener{
 
                     }
                 });
-
                 //ダイアログの作成と表示
                 alertDialog.create().show();
-
                 break;
 
             case R.id.reset:
 
+                //スコアのリセット
+                scoreCount = 0;
+                updateCountView();
 
                 break;
 
             case R.id.stop:
 
-                //Result画面へ遷移
+                //Result画面へ遷移。stubとしてResult画面へ遷移させるボタンにしてます
                 Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+                //スコアを渡す
+                intent.putExtra("playScore",scoreCount);
                 startActivity(intent);
 
                 PlayActivity.this.finish();
@@ -92,19 +96,21 @@ public class PlayActivity extends Activity implements View.OnClickListener{
         }
     }
 
-
-
-
     //画面タッチのイベント
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        //画像変更用の変数宣言
+        ImageView mainView = (ImageView)findViewById(R.id.split01);
 
         switch (event.getAction()) {
-            //タッチされた場合
+
             case MotionEvent.ACTION_DOWN:
 
+                //画像を変更
+                mainView.setImageResource(R.drawable.split02);
+
                 //スコアを１プラス
-                countMessage++;
+                scoreCount++;
                 //追加したメソッドでテキスト表示
                 updateCountView();
 
@@ -112,6 +118,9 @@ public class PlayActivity extends Activity implements View.OnClickListener{
                 break;
 
             case MotionEvent.ACTION_UP:
+
+                //画像を戻す
+                mainView.setImageResource(R.drawable.split01);
 
                 break;
         }
